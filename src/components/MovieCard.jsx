@@ -15,7 +15,7 @@ export default function MovieCard({
 		<div className="movies__card">
 			<AppImage src={imgSrc} className="movie__card__poster" />
 			<br />
-			<Link to={id}> {title}</Link>
+			<Link to={`/${id}`}> {title}</Link>
 			<br />
 			{overview}
 			<br />
