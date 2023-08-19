@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { getMovieDetails } from "../lib/movies.utils";
+import AppImage from "../components/AppImage";
 
 export async function loader({ params }) {
 	const movie = await getMovieDetails(params.movieId);
@@ -88,6 +89,15 @@ export default function MoviePage() {
 	});
 	return (
 		<div>
+			<AppImage
+				src={`${movie.poster_path}`}
+				style={{
+					width: "240px",
+					height: "320px",
+				}}
+				alt={movie.title || movie.original_title}
+			/>
+			<br />
 			{movie.title || movie.original_title}
 			<br />
 			{movie.overview}

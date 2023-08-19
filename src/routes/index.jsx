@@ -1,6 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import { getMovies } from "../lib/movies.utils";
 import { Link } from "react-router-dom";
+import AppImage from "../components/AppImage";
+import MovieCard from "../components/MovieCard";
 
 export async function loader({ request }) {
 	// let movies = await getMovies();
@@ -22,16 +24,18 @@ export default function IndexPage() {
 	console.log({ movies });
 	const moviesList = movies.results;
 	return (
-		<div>
+		<div className="movies__list">
 			{moviesList.map((movie) => {
 				return (
-					<div key={movie.id}>
-						{movie.title || movie.original_title}
-						<br />
-						{movie.overview}
-						<br />
-						<Link to={`/${movie.id}`}>{movie.id}</Link>
-					</div>
+					<MovieCard
+						id={movie.id}
+						imgSrc={movie.poster_path}
+						title={movie.title}
+						rating={movie.vote_average}
+						releaseDate={movie.release_date}
+						overview={movie.overview}
+						key={movie.id}
+					/>
 				);
 			})}
 		</div>
