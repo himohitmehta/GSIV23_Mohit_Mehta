@@ -3,6 +3,8 @@ import { getMovies } from "../lib/movies.utils";
 import MovieCard from "../components/MovieCard";
 import { Grid } from "@mui/material";
 import ListPagination from "../components/Pagination";
+import { useNavigation } from "react-router-dom";
+import MoviesListSkelton from "../components/Skeletons/MoviesListSkelton";
 export async function loader({ request }) {
 	// let movies = await getMovies();
 	const url = new URL(request.url);
@@ -20,9 +22,13 @@ export async function loader({ request }) {
 }
 
 export default function IndexPage() {
-	const { movies,q } = useLoaderData();
-	console.log({ movies });
+	const { movies, q } = useLoaderData();
+	const navigation = useNavigation();
+	console.log({ movies, navigation });
 	const moviesList = movies.results;
+	if (navigation.state === "loading") {
+		return <MoviesListSkelton />;
+	}
 	return (
 		<>
 			<Grid container spacing={2}>

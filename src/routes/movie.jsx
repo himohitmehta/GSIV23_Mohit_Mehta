@@ -1,12 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useLoaderData } from "react-router-dom";
 import { getMovieCast, getMovieDetails } from "../lib/movies.utils";
 import AppImage from "../components/AppImage";
 import { Button, Grid, Skeleton, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { setMovieDetails } from "../store/movies/moviesSlice";
 import MovieDetailSkeleton from "../components/Skeletons/MovieDetailSkeleton";
