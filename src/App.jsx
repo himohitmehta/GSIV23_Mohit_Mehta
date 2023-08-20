@@ -41,7 +41,7 @@ const router = createBrowserRouter([
 	{
 		path: "/:movieId",
 		element: <AppLayout usedIn={"detail"} />,
-		loader: movieDetailsLoader,
+		// loader: movieDetailsLoader,
 		children: [
 			{
 				errorElement: <ErrorPage />,
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
 					{
 						index: true,
 						element: <MoviePage />,
-						loader: movieDetailsLoader,
+						// loader: movieDetailsLoader,
 					},
 				],
 			},

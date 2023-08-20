@@ -9,8 +9,12 @@ const moviesSlice = createSlice({
 	name: "movies",
 	initialState,
 	reducers: {
-		setMoviesList() {},
-		setMovieDetails() {},
+		setMoviesList(state, action) {
+			state.moviesList = action.payload;
+		},
+		setMovieDetails(state, action) {
+			state.movieDetails = action.payload;
+		},
 	},
 });
 
