@@ -35,3 +35,10 @@ export async function getMovieDetails(query) {
 
 	return movie;
 }
+
+export async function getMovieCast(id) {
+	const url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
+	const response = await fetch(url, options);
+	let cast = await response.json();
+	return cast;
+}

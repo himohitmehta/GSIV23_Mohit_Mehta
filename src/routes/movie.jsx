@@ -1,6 +1,10 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useLoaderData } from "react-router-dom";
-import { getMovieDetails } from "../lib/movies.utils";
+import { getMovieCast, getMovieDetails } from "../lib/movies.utils";
 import AppImage from "../components/AppImage";
+import { Grid, Typography } from "@mui/material";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export async function loader({ params }) {
 	const movie = await getMovieDetails(params.movieId);
@@ -87,26 +91,48 @@ export default function MoviePage() {
 	console.log({
 		movie,
 	});
+	const [cast, setCast] = useState([]);
+	useEffect(() => {
+		if (movie) {
+			getMovieCast(movie.id)
+				.then((json) => {
+					console.log({ cast: json });
+					setCast(json.cast);
+				})
+				.catch((error) => console.log({ error }));
+		}
+	}, [movie]);
 	return (
-		<div>
-			<AppImage
-				src={`${movie.poster_path}`}
-				style={{
-					width: "240px",
-					height: "320px",
-				}}
-				alt={movie.title || movie.original_title}
-			/>
-			<br />
-			{movie.title || movie.original_title}
-			<br />
-			{movie.overview}
-			<br />
-			{movie.release_date}
-			<br />
-			{movie.vote_average}
-			<br />
-			{movie.vote_count}
-		</div>
+		<Grid container>
+			<Grid item md={3}>
+				<AppImage
+					src={movie.poster_path}
+					style={{
+						width: "240px",
+						height: "320px",
+					}}
+					alt={movie.title || movie.original_title}
+				/>
+			</Grid>
+			<Grid item md={9}>
+				<Typography variant="h3" component={"h1"} className="title">
+					{movie.title || movie.original_title} ({movie.vote_average})
+				</Typography>
+				<Typography>
+					{movie.release_date} | {Math.floor(movie.runtime / 60)} hour{" "}
+					{movie.runtime % 60} min | {/* director to be added */}
+				</Typography>
+				<Typography variant="body1">
+					<b>Cast:</b>
+					{Array.isArray(cast) &&
+						cast
+							.slice(0, 10)
+							.map((item) => item.name)
+							.join(", ")}
+					{/* to be added */}
+				</Typography>
+				<Typography variant="body1">{movie.overview}</Typography>
+			</Grid>
+		</Grid>
 	);
 }

@@ -1,11 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { useLoaderData } from "react-router-dom";
-import { useNavigation } from "react-router-dom";
-import { useSubmit } from "react-router-dom";
-import { useEffect } from "react";
-import { Form } from "react-router-dom";
-import { Link } from "react-router-dom";
-
+import AppHeader from "../components/AppHeader";
+import { Container } from "@mui/material";
 export async function loader({ request }) {
 	const url = new URL(request.url);
 	const q = url.searchParams.get("q");
@@ -13,19 +8,19 @@ export async function loader({ request }) {
 	return { q };
 }
 export default function AppLayout() {
-	const { q } = useLoaderData();
-	const navigation = useNavigation();
-	const submit = useSubmit();
-	useEffect(() => {
-		document.getElementById("q").value = q;
-	}, [q]);
-	const searching =
-		navigation.location &&
-		new URLSearchParams(navigation.location.search).has("q");
+	// const { q } = useLoaderData();
+	// const navigation = useNavigation();
+	// const submit = useSubmit();
+	// useEffect(() => {
+	// 	document.getElementById("q").value = q;
+	// }, [q]);
+	// const searching =
+	// 	navigation.location &&
+	// 	new URLSearchParams(navigation.location.search).has("q");
 	return (
 		<>
 			<div>
-				<div className="navbar">
+				{/* <div className="navbar">
 					<Form id="search-form" role="search">
 						<input
 							id="q"
@@ -42,18 +37,13 @@ export default function AppLayout() {
 							}}
 							className={searching ? "loading" : ""}
 						/>
-						<div
-							id="search-spinner"
-							aria-hidden
-							hidden={!searching}
-						/>
-						<div className="sr-only" aria-live="polite"></div>
-					</Form>{" "}
+					</Form>
 					<Link to="/">Home</Link>
-				</div>
-				<div className="container">
+				</div> */}
+				<AppHeader usedIn="home" />
+				<Container sx={{ pt: "64px" }}>
 					<Outlet />
-				</div>
+				</Container>
 			</div>
 		</>
 	);

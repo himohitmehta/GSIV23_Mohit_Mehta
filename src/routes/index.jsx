@@ -3,7 +3,7 @@ import { getMovies } from "../lib/movies.utils";
 import { Link } from "react-router-dom";
 import AppImage from "../components/AppImage";
 import MovieCard from "../components/MovieCard";
-
+import { Grid } from "@mui/material";
 export async function loader({ request }) {
 	// let movies = await getMovies();
 	const url = new URL(request.url);
@@ -24,21 +24,23 @@ export default function IndexPage() {
 	console.log({ movies });
 	const moviesList = movies.results;
 	return (
-		<div className="movies__list">
+		<Grid container spacing={2}>
 			{moviesList.map((movie) => {
 				return (
-					<MovieCard
-						id={movie.id}
-						imgSrc={movie.poster_path}
-						title={movie.title}
-						rating={movie.vote_average}
-						releaseDate={movie.release_date}
-						overview={movie.overview}
-						key={movie.id}
-					/>
+					<Grid item md={2.4} xs={6} sm={4} key={movie.id}>
+						<MovieCard
+							id={movie.id}
+							imgSrc={movie.poster_path}
+							title={movie.title}
+							rating={movie.vote_average}
+							releaseDate={movie.release_date}
+							overview={movie.overview}
+							key={movie.id}
+						/>
+					</Grid>
 				);
 			})}
-		</div>
+		</Grid>
 	);
 }
 /**

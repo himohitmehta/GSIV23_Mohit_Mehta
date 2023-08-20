@@ -7,20 +7,22 @@ export default function AppImage({
 	className = "",
 	...props
 }) {
-	return (
-		<img
-			src={`https://image.tmdb.org/t/p/original${src}`}
-			alt={alt}
-			style={style}
-			className={className}
-			{...props}
-		/>
-	);
+	if (src !== null)
+		return (
+			<img
+				src={`https://image.tmdb.org/t/p/w200${src}`}
+				alt={alt || "image"}
+				style={style}
+				className={className}
+				{...props}
+			/>
+		);
+	return <div className="movie__card__poster__placeholder"></div>;
 }
 
 AppImage.propTypes = {
 	src: PropTypes.string.isRequired,
-	alt: PropTypes.string.isRequired,
+	alt: PropTypes.string,
 	style: PropTypes.object,
 	className: PropTypes.string,
 };

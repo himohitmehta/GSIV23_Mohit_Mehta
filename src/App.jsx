@@ -9,7 +9,11 @@ import { loader as moviesLoader } from "./routes/index";
 import { loader as movieDetailsLoader } from "./routes/movie";
 import { loader as rootLoader } from "./layout/AppLayout";
 import DetailPageLayout from "./layout/DetailPageLayout";
-
+import { ThemeProvider } from "@mui/material";
+import theme from "./theme";
+import { Provider } from "react-redux";
+import { persistor, store } from "./store/configureStore";
+import { PersistGate } from "redux-persist/integration/react";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -56,7 +60,13 @@ const router = createBrowserRouter([
 function App() {
 	return (
 		<>
-			<RouterProvider router={router} />
+			<Provider store={store}>
+				<PersistGate persistor={persistor}>
+					<ThemeProvider theme={theme}>
+						<RouterProvider router={router} />
+					</ThemeProvider>
+				</PersistGate>
+			</Provider>
 		</>
 	);
 }

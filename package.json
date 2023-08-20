@@ -11,6 +11,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.5",
     "@reduxjs/toolkit": "^1.9.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
