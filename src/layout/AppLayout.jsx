@@ -25,8 +25,7 @@ export default function AppLayout() {
 	return (
 		<>
 			<div>
-				<div>
-					<Link to="/">Home</Link>
+				<div className="navbar">
 					<Form id="search-form" role="search">
 						<input
 							id="q"
@@ -49,9 +48,12 @@ export default function AppLayout() {
 							hidden={!searching}
 						/>
 						<div className="sr-only" aria-live="polite"></div>
+						<Link to="/">Home</Link>
 					</Form>
 				</div>
-				<Outlet />
+				<div className="container">
+					<Outlet />
+				</div>
 			</div>
 		</>
 	);

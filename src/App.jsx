@@ -8,6 +8,7 @@ import MoviePage from "./routes/movie";
 import { loader as moviesLoader } from "./routes/index";
 import { loader as movieDetailsLoader } from "./routes/movie";
 import { loader as rootLoader } from "./layout/AppLayout";
+import DetailPageLayout from "./layout/DetailPageLayout";
 
 const router = createBrowserRouter([
 	{
@@ -24,8 +25,25 @@ const router = createBrowserRouter([
 						element: <IndexPage />,
 						loader: moviesLoader,
 					},
+					// {
+					// 	path: ":movieId",
+					// 	element: <MoviePage />,
+					// 	loader: movieDetailsLoader,
+					// },
+				],
+			},
+		],
+	},
+	{
+		path: "/:movieId",
+		element: <DetailPageLayout />,
+		loader: movieDetailsLoader,
+		children: [
+			{
+				errorElement: <ErrorPage />,
+				children: [
 					{
-						path: ":movieId",
+						index: true,
 						element: <MoviePage />,
 						loader: movieDetailsLoader,
 					},

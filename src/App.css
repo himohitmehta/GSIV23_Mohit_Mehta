@@ -22,3 +22,16 @@
 .movies__list > * {
 	flex: 1 1;
 }
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
