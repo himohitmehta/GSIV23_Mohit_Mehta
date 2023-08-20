@@ -9,7 +9,7 @@ const options = {
 };
 
 export async function getMovies(query, page) {
-	const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
+	const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${page}`;
 
 	const response = await fetch(url, options);
 

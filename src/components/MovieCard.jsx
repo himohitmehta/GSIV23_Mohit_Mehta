@@ -22,6 +22,7 @@ const styles = {
 		WebkitLineClamp: "1 !important",
 		WebkitBoxOrient: "vertical",
 		color: (theme) => theme.palette.gray,
+		fontWeight: 600,
 		// mt: 1,
 	},
 	"& .row": {
@@ -35,7 +36,7 @@ const styles = {
 export default function MovieCard({ imgSrc, title, rating, overview, id }) {
 	return (
 		<Link to={`/${id}`}>
-			<Card sx={{ ...styles }}>
+			<Card sx={{ ...styles }} elevation={8}>
 				<AppImage src={imgSrc} className="movie__card__poster" />
 				<Box sx={{ px: 1 }} className="">
 					<div className="row">

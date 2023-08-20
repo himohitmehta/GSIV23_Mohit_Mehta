@@ -161,13 +161,24 @@ export default function MoviePage() {
 					{movie.runtime % 60} min | {director.name}{" "}
 					{/* director to be added */}
 				</Typography>
-				<Typography variant="body1" sx={{ mt: 1 }}>
+				<Typography
+					variant="body1"
+					sx={{
+						mt: 1,
+						"& span": {
+							mr: 1,
+						},
+					}}
+				>
 					<b>Cast:</b>
-					{Array.isArray(actors) &&
-						actors
-							// .slice(0, 10)
-							.map((item) => item.name)
-							.join(", ")}
+					<span>
+						{" "}
+						{Array.isArray(actors) &&
+							actors
+								// .slice(0, 10)
+								.map((item) => item.name)
+								.join(", ")}
+					</span>
 					{Array.isArray(cast) && cast.length > 10 && (
 						<Button
 							sx={{
@@ -175,7 +186,8 @@ export default function MoviePage() {
 								textTransform: "none",
 								p: 0,
 								px: 0,
-								ml: 1,
+								// ml: 1,
+								
 								mt: "-2px",
 								"&:hover": {
 									background: "transparent",

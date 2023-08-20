@@ -14,7 +14,7 @@ export default function ListPagination({ totalPages, currentPage, q }) {
 		}
 	};
 	return (
-		<Box sx={{ py: 1, display: "flex", justifyContent: "center" }}>
+		<Box sx={{ py: 2, display: "flex", justifyContent: "center" }}>
 			<Form>
 				<Pagination
 					sx={{
