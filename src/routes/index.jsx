@@ -1,9 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { getMovies } from "../lib/movies.utils";
-import { Link } from "react-router-dom";
-import AppImage from "../components/AppImage";
 import MovieCard from "../components/MovieCard";
-import { Grid, Pagination } from "@mui/material";
+import { Grid } from "@mui/material";
 import ListPagination from "../components/Pagination";
 export async function loader({ request }) {
 	// let movies = await getMovies();

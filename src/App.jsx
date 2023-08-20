@@ -8,17 +8,16 @@ import MoviePage from "./routes/movie";
 import { loader as moviesLoader } from "./routes/index";
 import { loader as movieDetailsLoader } from "./routes/movie";
 import { loader as rootLoader } from "./layout/AppLayout";
-import DetailPageLayout from "./layout/DetailPageLayout";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store/configureStore";
 import { PersistGate } from "redux-persist/integration/react";
-import { ScrollRestoration } from "react-router-dom";
+
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <AppLayout />,
+		element: <AppLayout usedIn={"home"} />,
 		errorElement: <ErrorPage />,
 		loader: rootLoader,
 		children: [
@@ -41,7 +40,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/:movieId",
-		element: <DetailPageLayout />,
+		element: <AppLayout usedIn={"detail"} />,
 		loader: movieDetailsLoader,
 		children: [
 			{
@@ -65,7 +64,6 @@ function App() {
 				<PersistGate persistor={persistor}>
 					<ThemeProvider theme={theme}>
 						<RouterProvider router={router} />
-						
 					</ThemeProvider>
 				</PersistGate>
 			</Provider>

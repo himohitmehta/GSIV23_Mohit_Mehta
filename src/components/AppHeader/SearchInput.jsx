@@ -59,6 +59,7 @@ export default function SearchInput() {
 	const { q } = useLoaderData();
 	const navigation = useNavigation();
 	const submit = useSubmit();
+
 	useEffect(() => {
 		document.getElementById("q").value = q;
 	}, [q]);
