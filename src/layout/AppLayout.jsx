@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
 import AppHeader from "../components/AppHeader";
 import { Container } from "@mui/material";
+import { ScrollRestoration } from "react-router-dom";
 export async function loader({ request }) {
 	const url = new URL(request.url);
 	const q = url.searchParams.get("q");
+	const page = url.searchParams.get("page");
 	// const movies = await getMovies(q);
-	return { q };
+	return { q, page };
 }
 export default function AppLayout() {
 	// const { q } = useLoaderData();
@@ -44,6 +46,7 @@ export default function AppLayout() {
 				<Container sx={{ pt: "64px" }}>
 					<Outlet />
 				</Container>
+				<ScrollRestoration />
 			</div>
 		</>
 	);

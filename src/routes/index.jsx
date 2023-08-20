@@ -3,12 +3,14 @@ import { getMovies } from "../lib/movies.utils";
 import { Link } from "react-router-dom";
 import AppImage from "../components/AppImage";
 import MovieCard from "../components/MovieCard";
-import { Grid } from "@mui/material";
+import { Grid, Pagination } from "@mui/material";
+import ListPagination from "../components/Pagination";
 export async function loader({ request }) {
 	// let movies = await getMovies();
 	const url = new URL(request.url);
 	const q = url.searchParams.get("q");
-	let movies = await getMovies(q);
+	const page = url.searchParams.get("page");
+	let movies = await getMovies(q, page);
 
 	if (!movies) {
 		throw new Response("", {
@@ -16,31 +18,38 @@ export async function loader({ request }) {
 			statusText: "Not Found",
 		});
 	}
-	return { movies };
+	return { movies, q, page };
 }
 
 export default function IndexPage() {
-	const { movies } = useLoaderData();
+	const { movies,q } = useLoaderData();
 	console.log({ movies });
 	const moviesList = movies.results;
 	return (
-		<Grid container spacing={2}>
-			{moviesList.map((movie) => {
-				return (
-					<Grid item md={2.4} xs={6} sm={4} key={movie.id}>
-						<MovieCard
-							id={movie.id}
-							imgSrc={movie.poster_path}
-							title={movie.title}
-							rating={movie.vote_average}
-							releaseDate={movie.release_date}
-							overview={movie.overview}
-							key={movie.id}
-						/>
-					</Grid>
-				);
-			})}
-		</Grid>
+		<>
+			<Grid container spacing={2}>
+				{moviesList.map((movie) => {
+					return (
+						<Grid item md={2.4} xs={6} sm={4} key={movie.id}>
+							<MovieCard
+								id={movie.id}
+								imgSrc={movie.poster_path}
+								title={movie.title}
+								rating={movie.vote_average}
+								releaseDate={movie.release_date}
+								overview={movie.overview}
+								key={movie.id}
+							/>
+						</Grid>
+					);
+				})}
+			</Grid>
+			<ListPagination
+				totalPages={movies.total_pages}
+				currentPage={movies.page}
+				q={q}
+			/>
+		</>
 	);
 }
 /**

@@ -7,10 +7,10 @@ const options = {
 		Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
 	},
 };
-const url =
-	"https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 
-export async function getMovies(query) {
+export async function getMovies(query, page) {
+	const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
+
 	const response = await fetch(url, options);
 
 	let movies = await response.json();
@@ -18,7 +18,9 @@ export async function getMovies(query) {
 	if (!movies) movies = [];
 	if (query) {
 		movies = await fetch(
-			`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+			`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${
+				page || 1
+			}`,
 			options,
 		);
 		return movies.json();

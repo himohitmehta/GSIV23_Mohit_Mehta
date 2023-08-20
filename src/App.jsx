@@ -14,6 +14,7 @@ import theme from "./theme";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store/configureStore";
 import { PersistGate } from "redux-persist/integration/react";
+import { ScrollRestoration } from "react-router-dom";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -64,6 +65,7 @@ function App() {
 				<PersistGate persistor={persistor}>
 					<ThemeProvider theme={theme}>
 						<RouterProvider router={router} />
+						
 					</ThemeProvider>
 				</PersistGate>
 			</Provider>
