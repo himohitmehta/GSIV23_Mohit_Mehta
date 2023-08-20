@@ -1,4 +1,7 @@
+import { styled } from "@mui/material";
 import PropTypes from "prop-types";
+
+const StyledImage = styled("img")(({ theme }) => ({}));
 
 export default function AppImage({
 	src = "",
@@ -9,7 +12,7 @@ export default function AppImage({
 }) {
 	if (src !== null)
 		return (
-			<img
+			<StyledImage
 				src={`https://image.tmdb.org/t/p/w200${src}`}
 				alt={alt || "image"}
 				style={style}

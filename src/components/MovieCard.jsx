@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import AppImage from "./AppImage";
 import { Link } from "react-router-dom";
-import { Box, Card } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 
 const styles = {
 	"& .movie__card__poster": {
@@ -21,6 +21,8 @@ const styles = {
 		display: "-webkit-box",
 		WebkitLineClamp: "1 !important",
 		WebkitBoxOrient: "vertical",
+		color: (theme) => theme.palette.gray,
+		fontWeight: 600,
 		// mt: 1,
 	},
 	"& .row": {
@@ -33,20 +35,19 @@ const styles = {
 
 export default function MovieCard({ imgSrc, title, rating, overview, id }) {
 	return (
-		<Card sx={{ ...styles }}>
-			<AppImage src={imgSrc} className="movie__card__poster" />
-			<Box sx={{ px: 1 }} className="">
-				<div className="row">
-					<Link to={`/${id}`} className="title ">
-						{" "}
-						{title}
-					</Link>
-					<span>({rating})</span>
-				</div>
+		<Link to={`/${id}`}>
+			<Card sx={{ ...styles }} elevation={8}>
+				<AppImage src={imgSrc} className="movie__card__poster" />
+				<Box sx={{ px: 1 }} className="">
+					<div className="row">
+						<Typography className="title "> {title}</Typography>
+						<span>({rating})</span>
+					</div>
 
-				<p className="overview ">{overview}</p>
-			</Box>
-		</Card>
+					<p className="overview ">{overview}</p>
+				</Box>
+			</Card>
+		</Link>
 	);
 }
 

@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import AppHeader from "../components/AppHeader";
 import { Container } from "@mui/material";
 import { ScrollRestoration } from "react-router-dom";
+import PropTypes from "prop-types";
 export async function loader({ request }) {
 	const url = new URL(request.url);
 	const q = url.searchParams.get("q");
@@ -9,16 +10,7 @@ export async function loader({ request }) {
 	// const movies = await getMovies(q);
 	return { q, page };
 }
-export default function AppLayout() {
-	// const { q } = useLoaderData();
-	// const navigation = useNavigation();
-	// const submit = useSubmit();
-	// useEffect(() => {
-	// 	document.getElementById("q").value = q;
-	// }, [q]);
-	// const searching =
-	// 	navigation.location &&
-	// 	new URLSearchParams(navigation.location.search).has("q");
+export default function AppLayout({ usedIn }) {
 	return (
 		<>
 			<div>
@@ -42,8 +34,8 @@ export default function AppLayout() {
 					</Form>
 					<Link to="/">Home</Link>
 				</div> */}
-				<AppHeader usedIn="home" />
-				<Container sx={{ pt: "64px" }}>
+				<AppHeader usedIn={usedIn} />
+				<Container sx={{ pt: "80px" }}>
 					<Outlet />
 				</Container>
 				<ScrollRestoration />
@@ -51,3 +43,7 @@ export default function AppLayout() {
 		</>
 	);
 }
+
+AppLayout.propTypes = {
+	usedIn: PropTypes.string.isRequired,
+};

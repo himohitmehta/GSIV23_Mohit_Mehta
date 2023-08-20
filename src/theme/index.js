@@ -13,6 +13,9 @@ const theme = createTheme({
 		gray: "#4a4a4a",
 		lightGray: "#9b9b9b",
 		disabled: "#dfdfdf",
+        text:{
+            primary: "#4a4a4a",
+        }
 	},
 	breakpoints: {
 		xs: "512px",
