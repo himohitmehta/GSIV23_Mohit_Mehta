@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import AppImage from "./AppImage";
 import { Link } from "react-router-dom";

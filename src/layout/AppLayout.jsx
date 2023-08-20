@@ -48,8 +48,8 @@ export default function AppLayout() {
 							hidden={!searching}
 						/>
 						<div className="sr-only" aria-live="polite"></div>
-						<Link to="/">Home</Link>
-					</Form>
+					</Form>{" "}
+					<Link to="/">Home</Link>
 				</div>
 				<div className="container">
 					<Outlet />
