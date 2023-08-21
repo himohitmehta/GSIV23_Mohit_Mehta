@@ -1,10 +1,14 @@
+/* Application CSS for styling, not using all  */
+
 .movie__card__poster {
 	width: 200px;
 	height: 300px;
 	object-fit: contain;
 }
 .movie__card__poster__placeholder {
-	width: 200px;
+	/* width: 200px;
+	 */
+	width: 100%;
 	height: 300px;
 	background-color: #9b9b9b;
 }
