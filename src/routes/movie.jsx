@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { getMovieCast, getMovieDetails } from "../lib/movies.utils";
-import AppImage from "../components/AppImage";
+import AppImage from "../components/common/AppImage";
 import { Button, Grid, Skeleton, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";

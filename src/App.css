@@ -4,7 +4,9 @@
 	object-fit: contain;
 }
 .movie__card__poster__placeholder {
-	width: 200px;
+	/* width: 200px;
+	 */
+	width: 100%;
 	height: 300px;
 	background-color: #9b9b9b;
 }

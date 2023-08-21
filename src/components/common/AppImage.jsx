@@ -1,7 +1,7 @@
 import { styled } from "@mui/material";
 import PropTypes from "prop-types";
 
-const StyledImage = styled("img")(({ theme }) => ({}));
+const StyledImage = styled("img")(() => ({}));
 
 export default function AppImage({
 	src = "",

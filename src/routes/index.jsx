@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { getMovies } from "../lib/movies.utils";
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../components/common/MovieCard";
 import { Grid } from "@mui/material";
 import ListPagination from "../components/Pagination";
 import { useNavigation } from "react-router-dom";
@@ -31,7 +31,7 @@ export default function IndexPage() {
 	}
 	return (
 		<>
-			<Grid container spacing={2}>
+			<Grid container spacing={2} alignItems={'stretch'}>
 				{moviesList.map((movie) => {
 					return (
 						<Grid item md={2.4} xs={6} sm={4} key={movie.id}>

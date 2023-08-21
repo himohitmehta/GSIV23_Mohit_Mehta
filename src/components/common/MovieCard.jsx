@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Box, Card, Typography } from "@mui/material";
 
 const styles = {
+	height: "100%",
 	"& .movie__card__poster": {
 		width: "100%",
 		objectFit: "cover",
