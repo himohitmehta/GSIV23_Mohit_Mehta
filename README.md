@@ -1,5 +1,7 @@
 ## Movies Browser
 
+Deployed Link: [https://gsiv-23-mohit-mehta.vercel.app/](https://gsiv-23-mohit-mehta.vercel.app/)
+
 ### How to run the project:
 
 Install the dependencies with the following command:
@@ -86,3 +88,4 @@ this file is used to render the routes of the app, wraps the redux provider and 
 -   [ ] Add more details to the movie details page, actor details info. e.g. Actor name, image, character name, related movies list. Adding Actor profile image and character name will make the details page more attractive and informative.
     -   [ ] Actor card - name, image, character name
     -   [ ] related movies list
+
