@@ -15,6 +15,9 @@ npm run dev or yarn dev or pnpm dev
 ```
 the app will run on [http://localhost:5173](http://localhost:5173)
 
+### Navigating the project:
+
+
 ### Features
 
 -   [x] List of upcoming movies, with pagination. Each movie card displays:

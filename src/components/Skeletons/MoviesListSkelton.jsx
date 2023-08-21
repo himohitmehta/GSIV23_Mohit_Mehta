@@ -1,6 +1,9 @@
 import { Grid } from "@mui/material";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 
+
+// movie List skeleton component
+// shown while the movie list is loading
 export default function MoviesListSkelton() {
 	return (
 		<Grid container spacing={3}>

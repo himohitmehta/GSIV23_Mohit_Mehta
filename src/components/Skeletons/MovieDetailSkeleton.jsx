@@ -1,5 +1,8 @@
 import { Grid, Skeleton } from "@mui/material";
 
+
+// the movie detail skeleton component
+// shown while the movie detail is loading
 export default function MovieDetailSkeleton() {
 	return (
 		<Grid container spacing={3} alignItems={"flex-start"}>

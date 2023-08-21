@@ -5,13 +5,17 @@ const initialState = {
 	movieDetails: {},
 };
 
+// redux slice for movies
+
 const moviesSlice = createSlice({
 	name: "movies",
 	initialState,
 	reducers: {
+		// reducer to set movies list, currently not used
 		setMoviesList(state, action) {
 			state.moviesList = action.payload;
 		},
+		// reducer to set movie details
 		setMovieDetails(state, action) {
 			state.movieDetails = action.payload;
 		},

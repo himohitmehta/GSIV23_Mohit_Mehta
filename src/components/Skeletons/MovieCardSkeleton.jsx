@@ -1,5 +1,8 @@
 import { Card, Skeleton } from "@mui/material";
 
+
+// the movie card skeleton component
+// shown while the movie card is loading
 export default function MovieCardSkeleton() {
 	return (
 		<Card>

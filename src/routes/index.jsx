@@ -1,10 +1,16 @@
 import { useLoaderData } from "react-router-dom";
 import { getMovies } from "../lib/movies.utils";
 import MovieCard from "../components/common/MovieCard";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import ListPagination from "../components/Pagination";
 import { useNavigation } from "react-router-dom";
 import MoviesListSkelton from "../components/Skeletons/MoviesListSkelton";
+import { Link } from "react-router-dom";
+
+// the loader function to load index page data,
+// it return the movies, q and page parameters from the url to access in the component
+// if the q parameter is not null then it will search for movies with the q parameter
+// else it will return the upcoming movies
 export async function loader({ request }) {
 	// let movies = await getMovies();
 	const url = new URL(request.url);
@@ -21,17 +27,38 @@ export async function loader({ request }) {
 	return { movies, q, page };
 }
 
+// the index page component, it contains the movies list and the pagination component
 export default function IndexPage() {
 	const { movies, q } = useLoaderData();
 	const navigation = useNavigation();
 	console.log({ movies, navigation });
 	const moviesList = movies.results;
+	// while the data is loading show the skeleton
 	if (navigation.state === "loading") {
 		return <MoviesListSkelton />;
 	}
+
+	if (moviesList.length === 0 || !moviesList.length) {
+		return (
+			<Box
+				sx={{
+					display: "grid",
+					placeItems: "center",
+					height: "60vh",
+				}}
+			>
+				<div>
+					<h1>No Results Found</h1>
+					<p>Please try again with a different search term.</p>
+					<Link to="/">Go to Home</Link>
+				</div>
+			</Box>
+		);
+	}
+
 	return (
 		<>
-			<Grid container spacing={2} alignItems={'stretch'}>
+			<Grid container spacing={2} alignItems={"stretch"}>
 				{moviesList.map((movie) => {
 					return (
 						<Grid item md={2.4} xs={6} sm={4} key={movie.id}>
@@ -56,27 +83,3 @@ export default function IndexPage() {
 		</>
 	);
 }
-/**
- * {
-    "adult": false,
-    "backdrop_path": "/jZIYaISP3GBSrVOPfrp98AMa8Ng.jpg",
-    "genre_ids": [
-        16,
-        35,
-        10751,
-        14,
-        10749
-    ],
-    "id": 976573,
-    "original_language": "en",
-    "original_title": "Elemental",
-    "overview": "In a city where fire, water, land and air residents live together, a fiery young woman and a go-with-the-flow guy will discover something elemental: how much they have in common.",
-    "popularity": 4696.546,
-    "poster_path": "/6oH378KUfCEitzJkm07r97L0RsZ.jpg",
-    "release_date": "2023-06-14",
-    "title": "Elemental",
-    "video": false,
-    "vote_average": 7.8,
-    "vote_count": 1050
-}
- */

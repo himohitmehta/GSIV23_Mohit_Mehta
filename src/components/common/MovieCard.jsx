@@ -3,6 +3,8 @@ import AppImage from "./AppImage";
 import { Link } from "react-router-dom";
 import { Box, Card, Typography } from "@mui/material";
 
+
+// the styles for the Movie Card Components
 const styles = {
 	height: "100%",
 	"& .movie__card__poster": {
@@ -34,6 +36,14 @@ const styles = {
 	},
 };
 
+
+// Movie Card Component
+// the required props are:
+// imgSrc: the image source
+// title: the movie title
+// rating: the movie rating
+// overview: the movie overview
+// id: the movie id
 export default function MovieCard({ imgSrc, title, rating, overview, id }) {
 	return (
 		<Link to={`/${id}`}>
@@ -52,6 +62,7 @@ export default function MovieCard({ imgSrc, title, rating, overview, id }) {
 	);
 }
 
+// the prop types for the MovieCard component
 MovieCard.propTypes = {
 	imgSrc: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,

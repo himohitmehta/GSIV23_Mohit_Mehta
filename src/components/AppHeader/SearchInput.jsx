@@ -6,6 +6,8 @@ import { useNavigation } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 import { Form } from "react-router-dom";
 import { Search as SearchIcon } from "@mui/icons-material";
+
+// the loader method to load the data for the search input, it return the q parameter from the url
 export async function loader({ request }) {
 	const url = new URL(request.url);
 	const q = url.searchParams.get("q");
@@ -13,6 +15,7 @@ export async function loader({ request }) {
 	return { q };
 }
 
+//  the search input component, styled with material ui,
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",
 	borderRadius: theme.shape.borderRadius,
@@ -28,6 +31,7 @@ const Search = styled("div")(({ theme }) => ({
 	},
 }));
 
+// search icon wrapper
 const SearchIconWrapper = styled("div")(({ theme }) => ({
 	padding: theme.spacing(0, 2),
 	height: "100%",
@@ -38,6 +42,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 	justifyContent: "center",
 }));
 
+// the styled input base component
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	color: "inherit",
 	"& .MuiInputBase-input": {
@@ -56,24 +61,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchInput() {
+	/** q parameter from the url, used to search for movies, it is returned from the loader method, we are using the useLoaderData hook to get the data
+	from the loader method
+	 */
 	const { q } = useLoaderData();
 	const navigation = useNavigation();
 	const submit = useSubmit();
 
+	// set the value of the search input to the q parameter from the url
 	useEffect(() => {
 		document.getElementById("q").value = q;
 	}, [q]);
-	const searching =
-		navigation.location &&
-		new URLSearchParams(navigation.location.search).has("q");
+	// check if the user is searching for a movie
+	// const searching =
+	// 	navigation.location &&
+	// 	new URLSearchParams(navigation.location.search).has("q");
 
 	return (
 		<div>
-			{" "}
+			{/* Form is the component imported from  */}
 			<Form id="search-form" role="search">
 				<Search>
 					<SearchIconWrapper>
-						<SearchIcon />
+						<SearchIcon
+							sx={{
+								color: (theme) => theme.palette.lightGray,
+							}}
+						/>
 					</SearchIconWrapper>
 					<StyledInputBase
 						placeholder="Search…"
@@ -89,7 +103,7 @@ export default function SearchInput() {
 								replace: !isFirstSearch,
 							});
 						}}
-						className={searching ? "loading" : ""}
+						// className={searching ? "loading" : ""}
 					/>
 				</Search>
 			</Form>{" "}

@@ -1,6 +1,7 @@
 import { styled } from "@mui/material";
 import PropTypes from "prop-types";
 
+// styled image component to render the images in the app
 const StyledImage = styled("img")(() => ({}));
 
 export default function AppImage({
@@ -10,6 +11,7 @@ export default function AppImage({
 	className = "",
 	...props
 }) {
+	// if src is not null then render the image component
 	if (src !== null)
 		return (
 			<StyledImage
@@ -20,9 +22,11 @@ export default function AppImage({
 				{...props}
 			/>
 		);
+	// else render the placeholder component
 	return <div className="movie__card__poster__placeholder"></div>;
 }
 
+// the propTypes for the component
 AppImage.propTypes = {
 	src: PropTypes.string.isRequired,
 	alt: PropTypes.string,

@@ -14,6 +14,7 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./store/configureStore";
 import { PersistGate } from "redux-persist/integration/react";
 
+//  the router to handle the routes
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -57,12 +58,17 @@ const router = createBrowserRouter([
 	},
 ]);
 
+// The App Component that will be rendered
 function App() {
 	return (
 		<>
+			{/* Redux provider */}
 			<Provider store={store}>
+				{/* Persistor to persist the redux state */}
 				<PersistGate persistor={persistor}>
+					{/* mui theme provider to setup the theme */}
 					<ThemeProvider theme={theme}>
+						{/* The router provider for handling all routes in the app */}
 						<RouterProvider router={router} />
 					</ThemeProvider>
 				</PersistGate>

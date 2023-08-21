@@ -1,5 +1,7 @@
 import { TMDB_ACCESS_TOKEN } from "../constants/TMDB";
-
+/**
+ * utils file used for backend api integration
+ */
 const options = {
 	method: "GET",
 	headers: {
@@ -8,6 +10,9 @@ const options = {
 	},
 };
 
+// function to get movies from TMDB
+// query: search query
+// page: page number
 export async function getMovies(query, page) {
 	const url = `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${
 		page || 1
@@ -30,6 +35,9 @@ export async function getMovies(query, page) {
 	return movies;
 }
 
+// function to get movie details from TMDB
+// query: movie id
+
 export async function getMovieDetails(query) {
 	const url = `https://api.themoviedb.org/3/movie/${query}?language=en-US`;
 
@@ -40,6 +48,8 @@ export async function getMovieDetails(query) {
 	return movie;
 }
 
+// function to get movie cast from TMDB
+// id: movie id
 export async function getMovieCast(id) {
 	const url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
 	const response = await fetch(url, options);
